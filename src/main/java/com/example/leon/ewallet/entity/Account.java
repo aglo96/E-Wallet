@@ -2,6 +2,8 @@ package com.example.leon.ewallet.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="account")
@@ -13,9 +15,12 @@ public class Account {
     private int id;
 
     @Column(name="name")
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     @Column(name="email")
+    @NotBlank(message = "Email is mandatory")
+    @Email
     private String email;
 
     @Column(name="balance")
