@@ -13,7 +13,7 @@ id, type, sender_email, receiver_email, amount, datetime
 
 
 ## APIs
-#### /POST http://cryptic-ridge-89057.herokuapp.com/api/accounts
+#### User Story 1- to register an account-  /POST http://cryptic-ridge-89057.herokuapp.com/api/accounts
 ##### sample request body
 {
     "email": "x@gmail.com"
@@ -27,5 +27,5 @@ id, type, sender_email, receiver_email, amount, datetime
 {
     "success": false,
     "error": "account already exists"
-}
+} if account is already registered
 
