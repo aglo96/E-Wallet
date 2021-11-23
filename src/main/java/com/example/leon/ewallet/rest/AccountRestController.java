@@ -47,6 +47,10 @@ public class AccountRestController {
 
     @PostMapping("/accounts")
     public ResponseEntity<Object> registerAccount(@Valid @RequestBody Account theAccount) {
+        Account loadedAccount = accountService.findByEmail(theAccount.getEmail());
+        if (loadedAccount != null) {
+            return AccountResponseHandler.generateErrorResponse("account already exists");
+        }
         theAccount.setBalance(10000);
         accountService.save(theAccount);
         return AccountResponseHandler.generateSuccessResponse(HttpStatus.OK, theAccount);
