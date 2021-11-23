@@ -12,14 +12,14 @@ id, type, sender_email, receiver_email, amount, datetime
 *note that for this use case, the only type is "transfer". In future, if we want to support other transaction types, we need to create seperate tables for each type of transactions.
 
 
-##APIs
+## APIs
 #### /POST http://cryptic-ridge-89057.herokuapp.com/api/accounts
-#####sample request body
+##### sample request body
 {
     "email": "x@gmail.com"
 }
 
-####sample response
+#### sample response
 {
     "success": true,
 } if successful
