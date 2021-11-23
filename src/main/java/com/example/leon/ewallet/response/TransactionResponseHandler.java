@@ -7,23 +7,18 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountResponseHandler {
-    public static ResponseEntity<Object> generateSuccessResponse(HttpStatus status, Account account) {
+public class TransactionResponseHandler {
+    public static ResponseEntity<Object> generateSuccessResponse() {
         Map<String, Object> map = new HashMap<String, Object>();
-        if (status.is2xxSuccessful()) {
-            map.put("success", true);
-            map.put("balance", account.getBalance());
-        } else {
-            map.put("success", false);
-        }
-
-        return new ResponseEntity<Object>(map, status);
+        map.put("success", true);
+        return new ResponseEntity<Object>(map, HttpStatus.OK);
     }
 
     public static ResponseEntity<Object> generateErrorResponse(String reason) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("success", false);
         map.put("error", reason);
+        map.put("status", HttpStatus.BAD_REQUEST);
         return new ResponseEntity<Object>(map, HttpStatus.BAD_REQUEST);
     }
 

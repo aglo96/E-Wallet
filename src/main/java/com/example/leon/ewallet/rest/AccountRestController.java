@@ -28,28 +28,28 @@ public class AccountRestController {
     }
 
     @GetMapping("/accounts/{accountId}")
-    public Account getAccount(@PathVariable int accountId) {
+    public ResponseEntity<Object> getAccount(@PathVariable int accountId) {
         Account account = accountService.findById(accountId);
         if (account == null) {
-            throw new RuntimeException("Account id not found = " + accountId);
+            return AccountResponseHandler.generateErrorResponse("no account found");
         }
-        return account;
+        return AccountResponseHandler.generateSuccessResponse(HttpStatus.OK, account);
     }
 
     @PostMapping("/balance")
     public ResponseEntity<Object> getAccountBalance(@Valid @RequestBody Account theAccount) {
         Account account = accountService.findByEmail(theAccount.getEmail());
         if (account == null) {
-            throw new RuntimeException("Account email not found = " + account.getEmail());
+            return AccountResponseHandler.generateErrorResponse("no account found");
         }
-        return AccountResponseHandler.generateResponse(HttpStatus.OK, account);
+        return AccountResponseHandler.generateSuccessResponse(HttpStatus.OK, account);
     }
 
     @PostMapping("/accounts")
     public ResponseEntity<Object> registerAccount(@Valid @RequestBody Account theAccount) {
         theAccount.setBalance(10000);
         accountService.save(theAccount);
-        return AccountResponseHandler.generateResponse(HttpStatus.OK, theAccount);
+        return AccountResponseHandler.generateSuccessResponse(HttpStatus.OK, theAccount);
     }
 
 }

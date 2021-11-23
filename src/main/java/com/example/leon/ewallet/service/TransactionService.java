@@ -20,22 +20,6 @@ public class TransactionService {
         this.transactionDAO = transactionDAO;
     }
 
-
-//    @Transactional
-//    public List<Account> findAll() {
-//        return accountDAO.findAll();
-//    }
-//
-//    @Transactional
-//    public Account findById(int id) {
-//        return accountDAO.findById(id);
-//    }
-//
-//    @Transactional
-//    public Account findByEmail(String email) {
-//        return accountDAO.findByEmail(email);
-//    }
-
     @Transactional( rollbackFor = SQLException.class)
     public void save(Transaction transaction) {
         transactionDAO.save(transaction);

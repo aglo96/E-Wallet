@@ -24,11 +24,8 @@ public class AccountDAO {
 
     public List<Account> findAll() {
         Session currentSession = entityManager.unwrap(Session.class);
-
         Query<Account> theQuery = currentSession.createQuery("from Account", Account.class);
-
         List<Account> accounts = theQuery.getResultList();
-
         return accounts;
     }
 

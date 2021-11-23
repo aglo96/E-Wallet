@@ -18,7 +18,6 @@ public class Transaction {
     @Column(name="type")
     private String type;
 
-
     @Column(name="sender_email")
     @NotBlank(message = "sender email is mandatory")
     @Email

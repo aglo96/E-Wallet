@@ -2,6 +2,7 @@ package com.example.leon.ewallet.rest;
 
 
 import com.example.leon.ewallet.entity.Transaction;
+import com.example.leon.ewallet.response.TransactionResponseHandler;
 import com.example.leon.ewallet.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,15 +32,9 @@ public class TransactionRestController {
         Map<String, Object> responseBody = new HashMap<String, Object>();
         try {
             transactionService.save(transaction);
-            responseBody.put("success", true);
-            return new ResponseEntity<Object>(responseBody, HttpStatus.OK);
+            return TransactionResponseHandler.generateSuccessResponse();
         } catch (Exception e) {
-            StringWriter errors = new StringWriter();
-            e.printStackTrace(new PrintWriter(errors));
-            responseBody.put("success", false);
-            responseBody.put("error", e.getMessage());
-            responseBody.put("status", HttpStatus.BAD_REQUEST);
-            return new ResponseEntity<Object>(responseBody, HttpStatus.INTERNAL_SERVER_ERROR);
+            return TransactionResponseHandler.generateErrorResponse(e.getMessage());
         }
     }
 
