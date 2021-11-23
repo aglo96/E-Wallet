@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,11 +26,21 @@ public class TransactionRestController {
     }
 
     @PostMapping("/transactions")
-    public void transfer(@Valid @RequestBody Transaction transaction) {
-//        theAccount.setBalance(10000);
+    public ResponseEntity<Object> transfer(@Valid @RequestBody Transaction transaction) {
         transaction.setType("transfer");
-        transactionService.save(transaction);
-//        return AccountResponseHandler.generateResponse(HttpStatus.OK, theAccount);
+        Map<String, Object> responseBody = new HashMap<String, Object>();
+        try {
+            transactionService.save(transaction);
+            responseBody.put("success", true);
+            return new ResponseEntity<Object>(responseBody, HttpStatus.OK);
+        } catch (Exception e) {
+            StringWriter errors = new StringWriter();
+            e.printStackTrace(new PrintWriter(errors));
+            responseBody.put("success", false);
+            responseBody.put("error", e.getMessage());
+            responseBody.put("status", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<Object>(responseBody, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/latest-transactions")
@@ -40,36 +52,4 @@ public class TransactionRestController {
         map.put("transactions", latestTransactions);
         return new ResponseEntity<Object>(map, HttpStatus.OK);
     }
-
-
-//    @GetMapping("/accounts")
-//    public List<Account> findAll() {
-//        return accountService.findAll();
-//    }
-//
-//    @GetMapping("/accounts/{accountId}")
-//    public Account getAccount(@PathVariable int accountId) {
-//        Account account = accountService.findById(accountId);
-//        if (account == null) {
-//            throw new RuntimeException("Account id not found = " + accountId);
-//        }
-//        return account;
-//    }
-//
-//    @PostMapping("/balance")
-//    public ResponseEntity<Object> getAccountBalance(@Valid @RequestBody Account theAccount) {
-//        Account account = accountService.findByEmail(theAccount.getEmail());
-//        if (account == null) {
-//            throw new RuntimeException("Account email not found = " + account.getEmail());
-//        }
-//        return AccountResponseHandler.generateResponse(HttpStatus.OK, account);
-//    }
-//
-//    @PostMapping("/accounts")
-//    public ResponseEntity<Object> registerAccount(@Valid @RequestBody Account theAccount) {
-//        theAccount.setBalance(10000);
-//        accountService.save(theAccount);
-//        return AccountResponseHandler.generateResponse(HttpStatus.OK, theAccount);
-//    }
-
 }
