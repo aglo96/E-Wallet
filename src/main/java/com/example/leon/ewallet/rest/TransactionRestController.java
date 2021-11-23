@@ -2,6 +2,7 @@ package com.example.leon.ewallet.rest;
 
 
 import com.example.leon.ewallet.entity.Transaction;
+import com.example.leon.ewallet.request.TransferRequest;
 import com.example.leon.ewallet.response.TransactionResponseHandler;
 import com.example.leon.ewallet.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,9 @@ public class TransactionRestController {
     }
 
     @PostMapping("/transactions")
-    public ResponseEntity<Object> transfer(@Valid @RequestBody Transaction transaction) {
-        transaction.setType("transfer");
+    public ResponseEntity<Object> transfer(@Valid @RequestBody TransferRequest transferRequest) {
+        Transaction transaction = new Transaction("transfer", transferRequest.getEmail(),
+                transferRequest.getTransferee(), transferRequest.getAmount());
         Map<String, Object> responseBody = new HashMap<String, Object>();
         try {
             transactionService.save(transaction);

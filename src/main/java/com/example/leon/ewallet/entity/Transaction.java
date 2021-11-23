@@ -45,13 +45,11 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(int id, String type, String sender_email, String receiver_email, int amount, Date datetime) {
-        this.id = id;
+    public Transaction(String type, String sender_email, String receiver_email, int amount) {
         this.type = type;
         this.sender_email = sender_email;
         this.receiver_email = receiver_email;
         this.amount = amount;
-        this.datetime = datetime;
     }
 
     public int getId() {
