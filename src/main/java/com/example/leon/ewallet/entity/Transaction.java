@@ -15,6 +15,10 @@ public class Transaction {
     @Column(name="id")
     private int id;
 
+    @Column(name="type")
+    private String type;
+
+
     @Column(name="sender_email")
     @NotBlank(message = "sender email is mandatory")
     @Email
@@ -31,9 +35,20 @@ public class Transaction {
     @Column(name="datetime")
     private Date datetime;
 
+    public String getType() {
+        return type;
+    }
 
+    public void setType(String type) {
+        this.type = type;
+    }
 
-    public Transaction(String sender_email, String receiver_email, int amount, Date datetime) {
+    public Transaction() {
+    }
+
+    public Transaction(int id, String type, String sender_email, String receiver_email, int amount, Date datetime) {
+        this.id = id;
+        this.type = type;
         this.sender_email = sender_email;
         this.receiver_email = receiver_email;
         this.amount = amount;

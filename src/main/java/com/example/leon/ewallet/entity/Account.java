@@ -30,8 +30,9 @@ public class Account {
     public Account() {
     }
 
-    public Account(String email, int balance) {
+    public Account(int id, String email, int balance) {
 //        this.name = name;
+        this.id = id;
         this.email = email;
         this.balance = balance;
     }
