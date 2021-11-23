@@ -13,7 +13,7 @@ id, type, sender_email, receiver_email, amount, datetime
 
 
 ## APIs
-#### User Story 1- to register an account-  /POST http://cryptic-ridge-89057.herokuapp.com/api/accounts
+### User Story 1- to register an account-  /POST http://cryptic-ridge-89057.herokuapp.com/api/accounts
 ##### sample request body
 {
     "email": "x@gmail.com"
@@ -29,7 +29,7 @@ id, type, sender_email, receiver_email, amount, datetime
     "error": "account already exists"
 } if account is already registered
 
-#### User Story 2- to check balance-  /POST http://cryptic-ridge-89057.herokuapp.com/api/balance
+### User Story 2- to check balance-  /POST http://cryptic-ridge-89057.herokuapp.com/api/balance
 ##### sample request body
 {
     "email": "x@gmail.com"
@@ -47,7 +47,7 @@ id, type, sender_email, receiver_email, amount, datetime
 } if there are no such account
 
 
-#### User Story 3- to transfer credits-  /POST http://cryptic-ridge-89057.herokuapp.com/api/transactions
+### User Story 3- to transfer credits-  /POST http://cryptic-ridge-89057.herokuapp.com/api/transactions
 ##### sample request body
 {
     "email": "x@gmail.com",
@@ -79,7 +79,7 @@ id, type, sender_email, receiver_email, amount, datetime
 } if balance is insufficient
 
 
-#### User Story 1- to register an account-  /POST http://cryptic-ridge-89057.herokuapp.com/api/accounts
+### User Story 4- to obtain latest transactions- /POST http://127.0.0.1:8080/api/latest-transactions
 ##### sample request body
 {
     "email": "x@gmail.com"
@@ -88,10 +88,15 @@ id, type, sender_email, receiver_email, amount, datetime
 #### sample response
 {
     "success": true,
-} if successful
-
-{
-    "success": false,
-    "error": "account already exists"
-} if account is already registered
+    "transactions": [
+        {
+            "id": 8,
+            "type": "transfer",
+            "sender_email": "timothy@gmail.com",
+            "receiver_email": "richard@gmail.com",
+            "amount": 8,
+            "datetime": "2021-11-23T04:59:39.000+00:00"
+        }
+    ]
+}
 
