@@ -2,7 +2,7 @@ package com.example.leon.ewallet.rest;
 
 
 import com.example.leon.ewallet.entity.Account;
-import com.example.leon.ewallet.response.RegisterAccountResponseHandler;
+import com.example.leon.ewallet.response.AccountResponseHandler;
 import com.example.leon.ewallet.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,11 +36,20 @@ public class AccountRestController {
         return account;
     }
 
+    @PostMapping("/balance")
+    public ResponseEntity<Object> getAccountBalance(@Valid @RequestBody Account theAccount) {
+        Account account = accountService.findByEmail(theAccount.getEmail());
+        if (account == null) {
+            throw new RuntimeException("Account email not found = " + account.getEmail());
+        }
+        return AccountResponseHandler.generateResponse(HttpStatus.OK, account);
+    }
+
     @PostMapping("/accounts")
     public ResponseEntity<Object> registerAccount(@Valid @RequestBody Account theAccount) {
         theAccount.setBalance(10000);
         accountService.save(theAccount);
-        return RegisterAccountResponseHandler.generateResponse(HttpStatus.OK, theAccount);
+        return AccountResponseHandler.generateResponse(HttpStatus.OK, theAccount);
     }
 
 }

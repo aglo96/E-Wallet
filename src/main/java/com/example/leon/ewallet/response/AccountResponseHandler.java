@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterAccountResponseHandler {
+public class AccountResponseHandler {
     public static ResponseEntity<Object> generateResponse(HttpStatus status, Account account) {
         Map<String, Object> map = new HashMap<String, Object>();
         if (status.is2xxSuccessful()) {

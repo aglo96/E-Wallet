@@ -14,9 +14,9 @@ public class Account {
     @Column(name="id")
     private int id;
 
-    @Column(name="name")
-    @NotBlank(message = "Name is mandatory")
-    private String name;
+//    @Column(name="name")
+//    @NotBlank(message = "Name is mandatory")
+//    private String name;
 
     @Column(name="email")
     @NotBlank(message = "Email is mandatory")
@@ -30,8 +30,8 @@ public class Account {
     public Account() {
     }
 
-    public Account(String name, String email, int balance) {
-        this.name = name;
+    public Account(String email, int balance) {
+//        this.name = name;
         this.email = email;
         this.balance = balance;
     }
@@ -44,13 +44,13 @@ public class Account {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
+//    public String getName() {
+//        return name;
+//    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public String getEmail() {
         return email;

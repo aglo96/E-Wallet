@@ -1,6 +1,7 @@
 package com.example.leon.ewallet.dao;
 
 import com.example.leon.ewallet.entity.Account;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,14 @@ public class AccountDAO {
         Session currentSession = entityManager.unwrap(Session.class);
         Account theAccount = currentSession.get(Account.class, id);
         return theAccount;
+    }
 
+    public Account findByEmail(String email) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        Query query = currentSession.createQuery("from Account where email=:email");
+        query.setParameter("email", email);
+        Account account = (Account) query.uniqueResult();
+        return account;
     }
 
     public void save(Account account) {

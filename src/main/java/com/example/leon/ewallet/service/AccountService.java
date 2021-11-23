@@ -33,6 +33,11 @@ public class AccountService {
     }
 
     @Transactional
+    public Account findByEmail(String email) {
+        return accountDAO.findByEmail(email);
+    }
+
+    @Transactional
     public void save(Account account) {
         accountDAO.save(account);
     }
