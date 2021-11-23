@@ -27,7 +27,6 @@ public class Account {
     }
 
     public Account(int id, String email, int balance) {
-//        this.name = name;
         this.id = id;
         this.email = email;
         this.balance = balance;

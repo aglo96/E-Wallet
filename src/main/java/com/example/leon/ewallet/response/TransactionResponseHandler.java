@@ -1,6 +1,5 @@
 package com.example.leon.ewallet.response;
 
-import com.example.leon.ewallet.entity.Account;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

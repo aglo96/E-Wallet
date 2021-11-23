@@ -3,8 +3,6 @@ package com.example.leon.ewallet.service;
 
 import com.example.leon.ewallet.dao.AccountDAO;
 import com.example.leon.ewallet.entity.Account;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

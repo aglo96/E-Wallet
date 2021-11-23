@@ -3,18 +3,11 @@ package com.example.leon.ewallet.dao;
 import com.example.leon.ewallet.entity.Account;
 import com.example.leon.ewallet.entity.Transaction;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.List;
 
 
